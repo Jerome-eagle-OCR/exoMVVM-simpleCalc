@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundTint="@color/teal_200"
+    android:outlineProvider="none"
+    tools:context=".view.SimpleCalcFragment">
+
+    <TextView
+        style="@style/Widget.AppCompat.TextView.SpinnerItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:shadowColor="@color/design_default_color_secondary_variant"
+        android:text="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ic_twotone_swap_vertical_circle_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/teal_700" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/h_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <EditText
+        android:id="@+id/first_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/h_guideline"
+        tools:hint="Premier nombre" />
+
+    <EditText
+        android:id="@+id/second_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/first_number"
+        tools:hint="Deuxième nombre" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/ic_launcher_foreground"
+        android:gravity="bottom|center_horizontal"
+        android:outlineProvider="none"
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/h_guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Résultat" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/h_guideline2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/teal_700"
+        android:textOff="-"
+        android:textOn="-"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/h_guideline2"
+        app:layout_constraintEnd_toEndOf="@id/v_guideline"
+        app:tint="@android:color/holo_orange_dark" />
+
+    <androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/teal_700"
+        android:textOff="+"
+        android:textOn="+"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/h_guideline2"
+        app:layout_constraintEnd_toStartOf="@id/minus"
+        app:tint="@android:color/holo_orange_dark" />
+
+    <androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/multiply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/teal_700"
+        android:textOff="×"
+        android:textOn="×"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/h_guideline2"
+        app:layout_constraintStart_toStartOf="@id/v_guideline"
+        app:tint="@android:color/holo_orange_dark" />
+
+    <androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/divide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/teal_700"
+        android:textOff="÷"
+        android:textOn="÷"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/h_guideline2"
+        app:layout_constraintStart_toEndOf="@id/multiply"
+        app:tint="@android:color/holo_orange_dark" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

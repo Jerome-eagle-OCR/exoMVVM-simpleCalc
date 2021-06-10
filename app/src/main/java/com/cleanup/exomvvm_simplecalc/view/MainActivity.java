@@ -1,10 +1,10 @@
-package com.cleanup.exomvvm_simplecalc;
+package com.cleanup.exomvvm_simplecalc.view;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cleanup.exomvvm_simplecalc.ui.main.MainFragment;
+import com.cleanup.exomvvm_simplecalc.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
+                    .replace(R.id.container, SimpleCalcFragment.newInstance())
                     .commitNow();
         }
     }
