@@ -14,6 +14,8 @@ public class SimpleCalcViewModel extends ViewModel {
     private String mCalcType = "+";
     private float mFirstNumber;
     private float mSecondNumber;
+    private boolean isFirstNumberOk;
+    private boolean isSecondNumberOk;
 
 
     private final MutableLiveData<String> calcResultMutableLiveData = new MutableLiveData<>();
@@ -35,37 +37,51 @@ public class SimpleCalcViewModel extends ViewModel {
         this.calculate();
     }
 
-    public void setFirstNumber(float firstNumber) {
-        this.mFirstNumber = firstNumber;
-        this.calculate();
-    }
-
-    public void setSecondNumber(float secondNumber) {
-        this.mSecondNumber = secondNumber;
-        this.calculate();
+    public void setNumber(String number) {
+        if (number.substring(1).isEmpty() || number.endsWith(".")) {
+            calcResultMutableLiveData.setValue("###");
+            if (number.charAt(0) == 'F') isFirstNumberOk = false;
+            if (number.charAt(0) == 'S') isSecondNumberOk = false;
+        } else {
+            switch (number.charAt(0)) {
+                case 'F':
+                    this.mFirstNumber = Float.parseFloat(number.substring(1));
+                    isFirstNumberOk = true;
+                    break;
+                case 'S':
+                    this.mSecondNumber = Float.parseFloat(number.substring(1));
+                    isSecondNumberOk = true;
+                    break;
+            }
+            this.calculate();
+        }
     }
 
     public void calculate() {
         calcResultMutableLiveData.setValue("");
         float calcResult = 0;
-        switch (mCalcType) {
-            case "+":
-                calcResult = mSimpleCalc.performAddition(mFirstNumber, mSecondNumber);
-                break;
-            case "-":
-                calcResult = mSimpleCalc.performSubtraction(mFirstNumber, mSecondNumber);
-                break;
-            case "×":
-                calcResult = mSimpleCalc.performMultiplication(mFirstNumber, mSecondNumber);
-                break;
-            case "÷":
-                if (mSecondNumber == 0) {
-                    errorMessageMutableLiveData.setValue("Division par zéro impossible !\nVeuillez corriger le second nombre");
-                    calcResultMutableLiveData.setValue("###");
-                } else {
-                    calcResult = mSimpleCalc.performDivision(mFirstNumber, mSecondNumber);
-                }
-                break;
+        if (!isFirstNumberOk || !isSecondNumberOk) {
+            calcResultMutableLiveData.setValue("###");
+        } else {
+            switch (mCalcType) {
+                case "+":
+                    calcResult = mSimpleCalc.performAddition(mFirstNumber, mSecondNumber);
+                    break;
+                case "-":
+                    calcResult = mSimpleCalc.performSubtraction(mFirstNumber, mSecondNumber);
+                    break;
+                case "×":
+                    calcResult = mSimpleCalc.performMultiplication(mFirstNumber, mSecondNumber);
+                    break;
+                case "÷":
+                    if (mSecondNumber == 0) {
+                        errorMessageMutableLiveData.setValue("Division par zéro impossible !\nVeuillez corriger le second nombre");
+                        calcResultMutableLiveData.setValue("###");
+                    } else {
+                        calcResult = mSimpleCalc.performDivision(mFirstNumber, mSecondNumber);
+                    }
+                    break;
+            }
         }
         if (!Objects.equals(calcResultMutableLiveData.getValue(), "###"))
             calcResultMutableLiveData.setValue(String.valueOf(calcResult));

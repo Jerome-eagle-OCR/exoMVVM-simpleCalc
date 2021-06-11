@@ -95,7 +95,7 @@ public class SimpleCalcFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mViewModel.setFirstNumber(Float.parseFloat(s.toString()));
+                mViewModel.setNumber("F" + s.toString());
             }
         });
         firstNumber.setText("0");
@@ -110,7 +110,7 @@ public class SimpleCalcFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mViewModel.setSecondNumber(Float.parseFloat(s.toString()));
+                mViewModel.setNumber("S" + s.toString());
             }
         });
         secondNumber.setText("0");
