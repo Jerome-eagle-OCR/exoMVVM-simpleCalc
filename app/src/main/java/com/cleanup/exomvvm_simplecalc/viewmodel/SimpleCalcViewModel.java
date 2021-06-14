@@ -45,11 +45,11 @@ public class SimpleCalcViewModel extends ViewModel {
         } else {
             switch (number.charAt(0)) {
                 case 'F':
-                    this.mFirstNumber = Float.parseFloat(number.substring(1));
+                    mFirstNumber = Float.parseFloat(number.substring(1));
                     isFirstNumberOk = true;
                     break;
                 case 'S':
-                    this.mSecondNumber = Float.parseFloat(number.substring(1));
+                    mSecondNumber = Float.parseFloat(number.substring(1));
                     isSecondNumberOk = true;
                     break;
             }
