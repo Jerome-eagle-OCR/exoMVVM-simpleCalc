@@ -141,7 +141,7 @@
         app:layout_constraintBottom_toBottomOf="@id/h_guideline2"
         app:layout_constraintStart_toStartOf="@id/v_guideline" />
 
-    <ToggleButton
+    <androidx.appcompat.widget.AppCompatToggleButton
         android:id="@+id/divide"
         style="@android:style/Widget.Material.Light.Button.Toggle"
         android:layout_width="60dp"
