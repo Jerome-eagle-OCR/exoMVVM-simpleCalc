@@ -1,5 +1,6 @@
-package com.cleanup.exomvvm_simplecalc.view;
+package com.cleanup.exomvvm_simplecalc.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,12 +16,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.cleanup.exomvvm_simplecalc.R;
 import com.cleanup.exomvvm_simplecalc.databinding.SimpleCalcFragmentBinding;
-import com.cleanup.exomvvm_simplecalc.viewmodel.SimpleCalcViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Arrays;
 
-public class SimpleCalcFragment extends Fragment {
+public class SimpleCalcFragment extends Fragment implements Snackable {
 
     private SimpleCalcFragmentBinding mBinding;
 
@@ -41,7 +41,6 @@ public class SimpleCalcFragment extends Fragment {
     }
 
     private void setListeners() {
-        mBinding.plus.setChecked(true);
         for (AppCompatToggleButton appCompatToggleButton : Arrays.asList(mBinding.plus, mBinding.minus, mBinding.multiply, mBinding.divide)) {
             appCompatToggleButton.setOnClickListener(this::manageToggleBtnCheck);
         }
@@ -59,7 +58,6 @@ public class SimpleCalcFragment extends Fragment {
                 mViewModel.setNumber("F" + s.toString());
             }
         });
-        mBinding.firstNumber.setText("0");
         mBinding.secondNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,7 +72,6 @@ public class SimpleCalcFragment extends Fragment {
                 mViewModel.setNumber("S" + s.toString());
             }
         });
-        mBinding.secondNumber.setText("0");
     }
 
     private void manageToggleBtnCheck(View v) {
@@ -91,14 +88,29 @@ public class SimpleCalcFragment extends Fragment {
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(SimpleCalcViewModel.class);
-        mViewModel.getCalcResultLiveData().observe(this, calcResult -> mBinding.result.setText(String.valueOf(calcResult)));
-        mViewModel.getErrorMessageLiveData().observe(this, s -> Snackbar.make(requireView(), s,
-                Snackbar.LENGTH_LONG).setBackgroundTint(getResources().getColor(R.color.teal_700)).show());
+        mViewModel.setListener(this);
+        mViewModel.getCalcResultLiveData().observe(this, calcResult -> mBinding.result.setText(calcResult));
+        mViewModel.getFirstNumberCorrectionLiveData().observe(this, s -> {
+            mBinding.firstNumber.setText(s);
+            mBinding.firstNumber.setSelection(mBinding.firstNumber.length());
+        });
+        mViewModel.getSecondNumberCorrectionlivedata().observe(this, s -> {
+            mBinding.secondNumber.setText(s);
+            mBinding.secondNumber.setSelection(mBinding.secondNumber.length());
+        });
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         mBinding = null;
+    }
+
+    @SuppressLint("ShowToast")
+    @Override
+    public void showErrorMessage(String errorMessage) {
+        Snackbar.make(getActivity().findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_SHORT)
+                .setBackgroundTint(SimpleCalcFragment.this.getResources().getColor(R.color.teal_700))
+                .setAnchorView(R.id.snackbar_text).show();
     }
 }

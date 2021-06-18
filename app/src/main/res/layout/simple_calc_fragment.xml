@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:foregroundTint="@color/teal_200"
     android:outlineProvider="none"
-    tools:context=".view.SimpleCalcFragment">
+    tools:context=".ui.SimpleCalcFragment">
 
     <ImageView
         android:id="@+id/image"
@@ -18,7 +18,8 @@
         android:src="@drawable/ic_twotone_swap_vertical_circle_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/teal_700" />
+        app:tint="@color/teal_700"
+        tools:ignore="ContentDescription" />
 
     <TextView
         style="@style/Widget.AppCompat.TextView.SpinnerItem"
@@ -41,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_begin="200dp" />
 
     <EditText
         android:id="@+id/first_number"
@@ -53,7 +54,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/h_guideline"
-        tools:hint="Premier nombre" />
+        android:hint="Premier nombre"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/second_number"
@@ -66,7 +68,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/first_number"
-        tools:hint="Deuxième nombre" />
+        android:hint="Deuxième nombre"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/result"
@@ -83,7 +86,14 @@
         app:layout_constraintTop_toBottomOf="@id/second_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Résultat" />
+        android:text="Résultat" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/snackbar_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="130dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/v_guideline"

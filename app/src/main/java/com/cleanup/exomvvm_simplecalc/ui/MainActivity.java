@@ -1,4 +1,4 @@
-package com.cleanup.exomvvm_simplecalc.view;
+package com.cleanup.exomvvm_simplecalc.ui;
 
 import android.os.Bundle;
 

@@ -2,14 +2,13 @@ package com.cleanup.exomvvm_simplecalc;
 
 import com.cleanup.exomvvm_simplecalc.model.SimpleCalc;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class SimpleCalcTest {
 
-    SimpleCalc mSimpleCalc = new SimpleCalc();
+    final SimpleCalc mSimpleCalc = new SimpleCalc();
 
     @Test
     public void performAddition() {
