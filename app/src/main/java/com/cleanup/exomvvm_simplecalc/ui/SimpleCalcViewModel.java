@@ -50,7 +50,7 @@ public class SimpleCalcViewModel extends ViewModel {
         return firstNumberCorrectionMutableLiveData;
     }
 
-    public LiveData<String> getSecondNumberCorrectionlivedata() {
+    public LiveData<String> getSecondNumberCorrectionLiveData() {
         return secondNumberCorrectionMutableLiveData;
     }
 

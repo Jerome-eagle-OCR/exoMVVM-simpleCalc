@@ -94,7 +94,7 @@ public class SimpleCalcFragment extends Fragment implements Snackable {
             mBinding.firstNumber.setText(s);
             mBinding.firstNumber.setSelection(mBinding.firstNumber.length());
         });
-        mViewModel.getSecondNumberCorrectionlivedata().observe(this, s -> {
+        mViewModel.getSecondNumberCorrectionLiveData().observe(this, s -> {
             mBinding.secondNumber.setText(s);
             mBinding.secondNumber.setSelection(mBinding.secondNumber.length());
         });
